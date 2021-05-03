@@ -1,10 +1,12 @@
 let keypadEl = document.querySelectorAll(".keypad")
 let screenEl = document.querySelector(".screen")
+let clrScreen = document.querySelector(".bsp")
 
 // Getting Data on screen
 let dataStorage1 = 0 ;
 let symbol = "";
 let equals = "";
+let shh = "m"
 
 keypadEl.forEach((elem,index)=>{
  elem.addEventListener("click",(e)=>{
@@ -247,17 +249,25 @@ keypadEl.forEach((elem,index)=>{
             screenEl.innerHTML = dataStorage1
             console.log(dataStorage1)
        }
-         
-        
-     }else if(e.target.classList.contains("cls")){
+      }else if(e.target.classList.contains("cls")){
        dataStorage1 = 0;
        symbol = "";
        equals = "";
        screenEl.innerHTML = ""
-     }
+     }else if(e.target.classList.contains("bsp")){
+         let char = Number(screenEl.innerHTML);
+         let checker = screenEl.innerHTML
+         if(checker.length > 0){
+           if(equals == ""){
+               let str = char.toString().split("");
+               let rem = str.join("");
+               rem = rem.substr(0, rem.length - 1);
+               screenEl.innerHTML = rem;
+           }
+         }
+       }
  })
 })
+let h = "";
 
-const addSymbol = (staticVar ,screenFigure) =>{
-        staticVar = screenFigure
-}
+       
