@@ -89,7 +89,7 @@ keypadEl.forEach((elem,index)=>{
                 symbol += e.target.textContent
                 equals = "";
                 screenEl.innerHTML = "";
-                console.log(dataStorage1)
+              
             }else if(symbol == "X"){
                 dataStorage1 *= (+screenEl.innerHTML)
                 symbol = ""
