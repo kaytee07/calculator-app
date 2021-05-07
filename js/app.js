@@ -1,12 +1,15 @@
-let keypadEl = document.querySelectorAll(".keypad")
-let screenEl = document.querySelector(".screen")
-let clrScreen = document.querySelector(".bsp")
+let keypadEl = document.querySelectorAll(".keypad");
+let screenEl = document.querySelector(".screen") ;
+let historyEl = document.querySelector(".history")
+let clrScreen = document.querySelector(".bsp");
+
 
 // Getting Data on screen
 let dataStorage1 = 0 ;
 let symbol = "";
 let equals = "";
-let shh = "m"
+
+
 
 keypadEl.forEach((elem,index)=>{
  elem.addEventListener("click",(e)=>{
@@ -25,6 +28,10 @@ keypadEl.forEach((elem,index)=>{
         if(symbol == "+" && equals == ""){
             console.log(symbol)
             equals = ""
+             if (screenEl.innerHTML == "") {
+               return;
+             }
+           historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
             dataStorage1 += (+screenEl.innerHTML)
             screenEl.innerHTML = "";
              console.log(dataStorage1)
@@ -35,43 +42,66 @@ keypadEl.forEach((elem,index)=>{
                 dataStorage1 -= (+screenEl.innerHTML)
                 
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
                 }else if(symbol == "X"){
                 dataStorage1 *= (+screenEl.innerHTML)
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
                 }else if(symbol == "/"){
                 dataStorage1 /= (Number(screenEl.innerHTML))
-                
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
                 }
         
        }  else if(symbol == "" ){
-           console.log(symbol)
         symbol += e.target.textContent
         equals = ""
         dataStorage1 += (+screenEl.innerHTML)
+         if (screenEl.innerHTML == "") {
+           return;
+         }
+        historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
          screenEl.innerHTML = "";
        }else if(symbol != "" && equals == "=") {
            equals = ""
            symbol = ""
+           historyEl.innerHTML = "";
+            if (screenEl.innerHTML == "") {
+              return;
+            }
+           historyEl.innerHTML += screenEl.innerHTML + " " + "+" + " ";
             symbol += e.target.textContent
             screenEl.innerHTML = "";
        }
      }else if(e.target.classList.contains("sub")){
         if(symbol == "-" && equals == ""){
             equals = ""
-            dataStorage1 -= (+screenEl.innerHTML)
+            dataStorage1 -= (+screenEl.innerHTML);
+               if (screenEl.innerHTML == "") {
+                 return;
+               };
+             historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
             screenEl.innerHTML = "";
             console.log(dataStorage1)
         
@@ -80,20 +110,32 @@ keypadEl.forEach((elem,index)=>{
         symbol += e.target.textContent
         equals = ""
         dataStorage1 += (+screenEl.innerHTML)
+         if (screenEl.innerHTML == "") {
+           return;
+         }
+         historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
          screenEl.innerHTML = "";
         console.log(symbol)
        }  else if(symbol != "-" && symbol != "" && equals == "" ){
            if(symbol == "+"){
                 dataStorage1 += (+screenEl.innerHTML)
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
             }else if(symbol == "X"){
                 dataStorage1 *= (+screenEl.innerHTML)
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
@@ -101,7 +143,11 @@ keypadEl.forEach((elem,index)=>{
                 dataStorage1 /= (Number(screenEl.innerHTML))
                 
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
@@ -109,7 +155,12 @@ keypadEl.forEach((elem,index)=>{
        }else if(symbol != "" && equals != "") {
            equals = ""
            symbol = ""
-            symbol += e.target.textContent
+            symbol += e.target.textContent;
+             if (screenEl.innerHTML == "") {
+               return;
+             }
+            historyEl.innerHTML = ""
+             historyEl.innerHTML += screenEl.innerHTML + " " + symbol + " ";
             screenEl.innerHTML = "";
        }
        
@@ -118,21 +169,37 @@ keypadEl.forEach((elem,index)=>{
         if(symbol == "X" && equals == ""){
             equals = ""
             dataStorage1 *= (+screenEl.innerHTML)
+            if(screenEl.innerHTML == ""){
+              return
+            }
+            historyEl.innerHTML +=
+              screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
             screenEl.innerHTML = "";
             console.log(dataStorage1)
         
        }else if(symbol == "" ){
-        symbol = ""
-        symbol += e.target.textContent
+         symbol = ""; 
+         symbol += e.target.textContent;
+          if (screenEl.innerHTML == "") {
+            return;
+          }
+         historyEl.innerHTML +=
+          screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
+        
         equals = ""
         dataStorage1 = (+screenEl.innerHTML)
          screenEl.innerHTML = "";
-        console.log(dataStorage1)
+        console.log(e.target.textContent)
        }  else if(symbol != "X" && symbol != "" && equals == "" ){
            if(symbol == "+"){
                 dataStorage1 += (+screenEl.innerHTML)
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                 historyEl.innerHTML +=
+                  screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
@@ -141,15 +208,24 @@ keypadEl.forEach((elem,index)=>{
                 dataStorage1 -= (Number(screenEl.innerHTML))
                 
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML +=
+                  screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
                 equals = "";
                 screenEl.innerHTML = "";
-                console.log(dataStorage1)
                 }else if(symbol == "/"){
                 dataStorage1 /= (Number(screenEl.innerHTML))
                 
                 symbol = ""
-                symbol += e.target.textContent
+                symbol += e.target.textContent;
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML +=
+                  screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
@@ -158,6 +234,12 @@ keypadEl.forEach((elem,index)=>{
            equals = ""
            symbol = ""
             symbol += e.target.textContent
+             if (screenEl.innerHTML == "") {
+               return;
+             }
+            historyEl.innerHTML = ""
+            historyEl.innerHTML +=
+              screenEl.innerHTML + " " + symbol.toLowerCase() + " ";
             screenEl.innerHTML = "";
        }
        
@@ -166,6 +248,10 @@ keypadEl.forEach((elem,index)=>{
         if(symbol == "/" && equals == ""){
             equals = ""
             dataStorage1 /= (+screenEl.innerHTML)
+             if (screenEl.innerHTML == "") {
+               return;
+             }
+            historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
             screenEl.innerHTML = "";
             console.log(dataStorage1)
         
@@ -174,28 +260,43 @@ keypadEl.forEach((elem,index)=>{
         symbol += e.target.textContent
         equals = ""
         dataStorage1 = (+screenEl.innerHTML)
+         if (screenEl.innerHTML == "") {
+           return;
+         }
+        historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
          screenEl.innerHTML = "";
         console.log(dataStorage1)
        }  else if(symbol != "/" && symbol != "" && equals == "" ){
            if(symbol == "+"){
                 dataStorage1 += (+screenEl.innerHTML)
                 symbol = ""
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
                 symbol += e.target.textContent
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
             }else if(symbol == "-"){
               console.log("wo")
-                dataStorage1 -= (Number(screenEl.innerHTML))
-                
+                dataStorage1 -= (Number(screenEl.innerHTML))  
                 symbol = ""
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                 historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
                 symbol += e.target.textContent
                 equals = "";
                 screenEl.innerHTML = "";
                 console.log(dataStorage1)
                 }else if(symbol == "X"){
                 dataStorage1 *= (+screenEl.innerHTML)
-                symbol = ""
+                symbol = "";
+                 if (screenEl.innerHTML == "") {
+                   return;
+                 }
+                 historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
                 symbol += e.target.textContent
                 equals = "";
                 screenEl.innerHTML = "";
@@ -205,6 +306,11 @@ keypadEl.forEach((elem,index)=>{
            equals = ""
            symbol = ""
             symbol += e.target.textContent
+            historyEl.innerHTML = ""
+             if (screenEl.innerHTML == "") {
+               return;
+             }
+            historyEl.innerHTML += screenEl.innerHTML + " " + "÷" + " ";
             screenEl.innerHTML = "";
        }
        
@@ -216,6 +322,7 @@ keypadEl.forEach((elem,index)=>{
        }else if(equals == "" && symbol == "+"){
         equals =  e.target.textContent;
             dataStorage1 += (Number(screenEl.innerHTML))
+            historyEl.innerHTML += screenEl.innerHTML
             screenEl.innerHTML = dataStorage1
             console.log(dataStorage1)
          }else if(equals == "=" && symbol == "-"){
@@ -226,6 +333,7 @@ keypadEl.forEach((elem,index)=>{
        }else if(equals == "" && symbol == "-"){
         equals =  e.target.textContent;
             dataStorage1 -= (Number(screenEl.innerHTML))
+            historyEl.innerHTML += screenEl.innerHTML;
             screenEl.innerHTML = dataStorage1
              console.log(dataStorage1)
        }else if(equals == "=" && symbol == "X"){
@@ -236,6 +344,7 @@ keypadEl.forEach((elem,index)=>{
        }else if(equals == "" && symbol == "X"){
         equals =  e.target.textContent;
             dataStorage1 *= ( Number(screenEl.innerHTML))
+            historyEl.innerHTML += screenEl.innerHTML;
             screenEl.innerHTML = dataStorage1
             console.log(dataStorage1)
        }else if(equals == "=" && symbol == "/"){
@@ -246,6 +355,7 @@ keypadEl.forEach((elem,index)=>{
        }else if(equals == "" && symbol == "/"){
         equals =  e.target.textContent;
             dataStorage1 /= ( Number(screenEl.innerHTML))
+            historyEl.innerHTML += screenEl.innerHTML;
             screenEl.innerHTML = dataStorage1
             console.log(dataStorage1)
        }
@@ -253,6 +363,7 @@ keypadEl.forEach((elem,index)=>{
        dataStorage1 = 0;
        symbol = "";
        equals = "";
+       historyEl.innerHTML = ""
        screenEl.innerHTML = ""
      }else if(e.target.classList.contains("bsp")){
          let char = Number(screenEl.innerHTML);
@@ -268,6 +379,3 @@ keypadEl.forEach((elem,index)=>{
        }
  })
 })
-let h = "";
-//man
-       
