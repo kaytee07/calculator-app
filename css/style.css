@@ -12,7 +12,9 @@
     border-radius: 15px;
     padding: 1em 1em;
 }
-.screen{
+.main-screen{
+    
+    flex-direction: column;
    height: 140px;
    margin: 0 auto;
    background-color: rgb(238, 235, 231);
@@ -20,8 +22,16 @@
    border-radius: 6px;
    color: black;
    display: flex;
-   justify-content: center;
+   justify-content: space-evenly;
    align-items: center;
+}
+.screen{
+  align-self: flex-end;  
+   margin-right: 1em; 
+}
+.history{
+    align-self: flex-end; 
+    margin-right: 1em; 
 }
 .keypad-container{
     padding: 1em 1em;
