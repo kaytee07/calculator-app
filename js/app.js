@@ -15,7 +15,7 @@ keypadEl.forEach((elem,index)=>{
  elem.addEventListener("click",(e)=>{
     if(e.target.classList.contains("num")){
         if(equals == "="){
-            screenEl.innerHTML = ""
+            screenEl.innerHTML = "";
             equals = "";
             symbol = "";
             dataStorage1 = 0
@@ -75,6 +75,7 @@ keypadEl.forEach((elem,index)=>{
                 }
         
        }  else if(symbol == "" ){
+         historyEl.innerHTML = "";
         symbol += e.target.textContent
         equals = ""
         dataStorage1 += (+screenEl.innerHTML)
@@ -106,6 +107,7 @@ keypadEl.forEach((elem,index)=>{
             console.log(dataStorage1)
         
        }else if(symbol == "" ){
+        historyEl.innerHTML = "";
         symbol = ""
         symbol += e.target.textContent
         equals = ""
@@ -178,6 +180,7 @@ keypadEl.forEach((elem,index)=>{
             console.log(dataStorage1)
         
        }else if(symbol == "" ){
+          historyEl.innerHTML = "";
          symbol = ""; 
          symbol += e.target.textContent;
           if (screenEl.innerHTML == "") {
@@ -256,6 +259,7 @@ keypadEl.forEach((elem,index)=>{
             console.log(dataStorage1)
         
        }else if(symbol == "" ){
+          historyEl.innerHTML = "";
         symbol = ""
         symbol += e.target.textContent
         equals = ""
